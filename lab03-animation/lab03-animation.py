@@ -1,8 +1,16 @@
 # Import the "arcade" library
 import arcade
 
+def main():
+    arcade.open_window(800, 600, "Dibujo navideño")
 
-arcade.open_window(800, 600, "Dibujo navideño")
+    # Set the background color
+    arcade.set_background_color(arcade.color.QUEEN_BLUE)
+
+    arcade.schedule(on_draw, 1/60)
+
+    arcade.run()
+
 
 def muñeco():
     # Bola de nieve (abajo)
@@ -55,15 +63,14 @@ def muñeco():
                                 arcade.color.RUSSET)
 
 
-def copos():
+def copos(a, b):
     # Copos
+    a_aux = a
+    b_aux = b
     c = 650
     d = 640
 
     for t in range (7):
-
-        a = 600
-        b = 650
 
         for i in range (8):
             arcade.draw_circle_filled(c, b, 5, arcade.color.WHITE)
@@ -74,6 +81,8 @@ def copos():
 
         c = c - 75
         d = d - 75
+        a = a_aux
+        b = b_aux
 
 def nube():
     # Nube
@@ -87,52 +96,23 @@ def nube():
     arcade.draw_circle_filled(600, 560, 60, arcade.color.PASTEL_PURPLE)
 
 
-"""def on_draw(delta_time):
+def on_draw(delta_time):
+
     arcade.start_render()
 
-    draw_grass()
-    draw_snow_person(150, 140)
-    draw_snow_person(450, 180)"""
+    arcade.draw_lrtb_rectangle_filled(0, 800, 250, 0, arcade.color.SAGE)
+    muñeco()
+
+    copos(on_draw.primerdato, on_draw.segundodato)
+
+    on_draw.primerdato -= 20 * delta_time
+    on_draw.segundodato -= 20 * delta_time
+
+    nube()
 
 
+on_draw.primerdato = 600
+on_draw.segundodato = 650
 
+main()
 
-
-# Set the background color
-arcade.set_background_color(arcade.color.QUEEN_BLUE)
-
-# Get ready to draw
-arcade.start_render()
-
-# Draw the grass
-arcade.draw_lrtb_rectangle_filled(0, 800, 250, 0, arcade.color.SAGE)
-
-# Pintamos el muñeco
-muñeco()
-
-# Colocamos algunos copos
-copos()
-
-# Colocamos la nube
-nube()
-
-#arcade.schedule(on_draw, 1/60)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# --- Finish drawing ---
-arcade.finish_render()
-
-# Keep the window up until someone closes it.
-arcade.run()
