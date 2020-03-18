@@ -8,14 +8,6 @@ def main():
     # Set the background color
     arcade.set_background_color(arcade.color.WHITE)
 
-    arcade.start_render()
-
-    arcade.draw_text("Welcome to Camel!", start_x=50, start_y=550, color=arcade.color.BLACK)
-    arcade.draw_text("You have stolen a camel to make your way across the great Mobi desert.", start_x=50, start_y=525, color=arcade.color.BLACK)
-    arcade.draw_text("The natives want their camel back and are chasing you down! Survive your", start_x=50, start_y=500, color=arcade.color.BLACK)
-    arcade.draw_text("desert trek and out run the natives.", start_x=50, start_y=475, color=arcade.color.BLACK)
-
-
     done = True
     contador = 0
     x = 425
@@ -23,6 +15,13 @@ def main():
     cansancio = 0
     bebidas = 3
     distancia = 20
+
+    arcade.start_render()
+
+    arcade.draw_text("Welcome to Camel!", start_x=50, start_y=550, color=arcade.color.BLACK)
+    arcade.draw_text("You have stolen a camel to make your way across the great Mobi desert.", start_x=50, start_y=525, color=arcade.color.BLACK)
+    arcade.draw_text("The natives want their camel back and are chasing you down! Survive your", start_x=50, start_y=500, color=arcade.color.BLACK)
+    arcade.draw_text("desert trek and out run the natives.", start_x=50, start_y=475, color=arcade.color.BLACK)
 
     while done:
 
@@ -36,7 +35,7 @@ def main():
 
         arcade.finish_render()
 
-        a = input()
+        a = input("¿Que opción elige? ")
 
         a = a.upper()
 
@@ -48,24 +47,21 @@ def main():
                 x = 550
 
         if (a == 'E'):
+            print("Dato leido")
+
             arcade.start_render()
 
-            print("Dato leido")
+            arcade.draw_rectangle_filled(0,0,800,600,arcade.color.GREEN)
             arcade.draw_text("Millas recorridas: " + str(millas), start_x = 50, start_y = x-200, color=arcade.color.BLACK)
             arcade.draw_text("Bebidas restantes: " + str(bebidas), start_x = 50, start_y = x-225, color=arcade.color.BLACK)
             arcade.draw_text("Los nativos están a " + str(distancia) + " millas de ti", start_x=50, start_y=x-250, color=arcade.color.BLACK)
 
             arcade.finish_render()
 
-
-borrar estas palabras
-
-
-
-
-
 main()
 
 # --- Finish drawing ---
 arcade.finish_render()
+
+arcade.run()
 
